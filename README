@@ -1,0 +1,23 @@
+## Install docker
+
+## Run Docker Image
+sudo mkdir /home/docker_node_sonos
+sudo mkdir /home/docker_node_sonos/clips
+sudo mkdir /home/docker_node_sonos/settings
+sudo mkdir /home/docker_node_sonos/cache
+sudo mkdir /home/docker_node_sonos/presets
+sudo sh -c 'curl https://raw.githubusercontent.com/jishi/node-sonos-http-api/master/presets/example.json > /home/docker_node_sonos/presets/example.json'
+sudo sh -c 'echo {} > /home/docker_node_sonos/settings/settings.json'
+
+sudo docker run \
+  --net=host \
+  --name sonos \
+  --restart=always \
+  -d \
+  -v /home/docker_node_sonos/settings:/app/settings \
+  -v /home/docker_node_sonos/clips:/app/static/clips \
+  -v /home/docker_node_sonos/cache:/app/cache \
+  -v /home/docker_node_sonos/presets:/app/presets \
+  dantapps/docker-node-sonos-http-api
+
+
