@@ -1,8 +1,7 @@
-FROM node:11
-
+FROM node:current-alpine
 WORKDIR /app
 
-RUN apt-get install tar curl && \
+RUN apk add --no-cache tar curl && \
   curl -L https://github.com/jishi/node-sonos-http-api/archive/master.tar.gz | tar xz --strip-components=1 -C /app && \
   mkdir cache && \
   ln -s settings/settings.json && \
@@ -14,6 +13,5 @@ EXPOSE 5005
 
 USER node
 
-CMD ["npm", "start"]
 ENTRYPOINT ["npm", "start"]
 
