@@ -15,4 +15,5 @@ EXPOSE 5005
 USER node
 
 CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
 
